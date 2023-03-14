@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { productItems } from '../../API/fakeJSON';
 import { IProduct } from '../../data/types';
 
 class CardItem extends Component<IProduct> {
