@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import SearchInput from '../components/UI/input/SearchInput';
+import CardList from '../components/UI/CardList';
 
 class Home extends Component {
   render() {
     return (
-      <div>
-        <h1>Home</h1>
-      </div>
+      <main className="main">
+        <SearchInput />
+        <CardList />
+      </main>
     );
   }
 }

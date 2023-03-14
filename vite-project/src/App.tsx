@@ -1,10 +1,12 @@
 import './styles/App.css';
 import React, { Component } from 'react';
-import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/UI/Navbar/Navbar';
 import About from './pages/About';
 import Home from './pages/Home';
 import Error from './pages/Error';
+import { productItems } from './API/fakeJSON';
+import CardList from './components/UI/CardList';
 
 class App extends Component {
   render() {
