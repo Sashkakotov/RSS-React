@@ -4,7 +4,7 @@ import { IProduct } from '../../data/types';
 class CardItem extends Component<IProduct> {
   render() {
     return (
-      <li className="card-item__container">
+      <li className="card-item__container" aria-label="card-item__container">
         <div className="card-item__header">
           <h2 className="card-item__title">{this.props.title}</h2>
         </div>

@@ -23,10 +23,12 @@ class SearchInput extends Component {
       <div className="search-input__container">
         <input
           onChange={this.handleChange.bind(this)}
+          onKeyDown={this.handleChange.bind(this)}
           type="text"
           className="search__input"
-          placeholder="Enter text"
+          placeholder="Search"
           value={this.state.searchInputValue}
+          aria-label="search-input"
         />
       </div>
     );

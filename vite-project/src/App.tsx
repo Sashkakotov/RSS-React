@@ -13,7 +13,7 @@ class App extends Component {
         <Navbar />
         <Routes>
           <Route path="/about" element={<About />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/error" element={<Error />} />
           <Route path="/*" element={<Navigate to="/error" replace />} />
         </Routes>
