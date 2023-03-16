@@ -15,20 +15,20 @@ class SearchInput extends Component {
     localStorage.setItem('searchValue', String(this.state.searchInputValue));
   }
 
-  handleChange(e: React.SyntheticEvent) {
+  handleChange = (e: React.SyntheticEvent) =>
     this.setState({ searchInputValue: (e.target as HTMLInputElement).value });
-  }
+
   render() {
     return (
       <div className="search-input__container">
         <input
-          onChange={this.handleChange.bind(this)}
-          onKeyDown={this.handleChange.bind(this)}
+          onChange={this.handleChange}
+          onKeyDown={this.handleChange}
           type="text"
           className="search__input"
           placeholder="Search"
           value={this.state.searchInputValue}
-          aria-label="search-input"
+          data-testid="search-input"
         />
       </div>
     );

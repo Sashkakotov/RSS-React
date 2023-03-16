@@ -12,8 +12,14 @@
   width: 1280px;
   margin: 0 auto;
 }
-a{
+a {
   text-decoration: none;
+  color: black;
+  transition: 0.3s;
+}
+a:hover {
+  text-decoration: underline rgba(105, 150, 219, 0.25);
+  transform: scale(1.1);
 }
 .navbar {
   width: 100%;

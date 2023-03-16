@@ -6,8 +6,8 @@ class CardList extends Component {
   render() {
     return (
       <ul className="cards__list">
-        {productItems.products.map((product, index) => (
-          <CardItem key={index} {...product} />
+        {productItems.products.map((product) => (
+          <CardItem key={product.id} {...product} />
         ))}
       </ul>
     );

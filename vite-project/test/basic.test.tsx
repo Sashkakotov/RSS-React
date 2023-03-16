@@ -11,7 +11,7 @@ import App from '../src/App';
 describe('Cards tests', () => {
   test('render CardItem component', () => {
     render(<CardItem {...productItems.products[0]} />);
-    const cardContainer = screen.getByLabelText('card-item__container');
+    const cardContainer = screen.getByTestId('card-item__container');
     expect(cardContainer).toBeDefined();
   });
   test('render CardList component', () => {
@@ -29,13 +29,13 @@ describe('Search input tests', () => {
   });
   test('SearchInput check', () => {
     render(<SearchInput />);
-    const searchInput = screen.getByLabelText('search-input') as HTMLInputElement;
+    const searchInput = screen.getByTestId('search-input') as HTMLInputElement;
     fireEvent.change(searchInput, { target: { value: '23' } });
     expect(searchInput.value).toBe('23');
   });
   test('Save SearchInput in localStorage', () => {
     const { unmount } = render(<SearchInput />);
-    const searchInput = screen.getByLabelText('search-input') as HTMLInputElement;
+    const searchInput = screen.getByTestId('search-input') as HTMLInputElement;
     fireEvent.keyDown(searchInput, { target: { value: '23' } });
     unmount();
     expect(window.localStorage.searchInputValue).toBeDefined;
@@ -46,7 +46,7 @@ describe('router test', () => {
   test('Full app rendering/navigating', async () => {
     render(<App />);
     const user = userEvent.setup();
-    expect(screen.getByLabelText('main')).toBeDefined;
+    expect(screen.getByTestId('main')).toBeDefined;
     await user.click(screen.getByText(/about/i));
     expect(screen.getByText(/This app created by Sashkakotov/i)).toBeDefined;
   });
