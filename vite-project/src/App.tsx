@@ -1,11 +1,11 @@
-import './styles/App.css';
 import React, { Component } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
 import Navbar from './components/UI/Navbar/Navbar';
 import About from './pages/About';
 import Home from './pages/Home';
 import Error from './pages/Error';
-
+import './styles/App.css';
 class App extends Component {
   render() {
     return (

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
+import { ERROR_PAGE_TITLE } from '../constants/constants';
+
 class Error extends Component {
   render() {
     return (
-      <div>
-        <h1>404 No such error</h1>
-      </div>
+      <main>
+        <h1>{ERROR_PAGE_TITLE}</h1>
+      </main>
     );
   }
 }

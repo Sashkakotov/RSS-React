@@ -1,14 +1,10 @@
-export interface IProduct {
-  id?: number;
-  title?: string;
-  description?: string;
-  price?: number;
-  discountPercentage?: number;
-  rating?: number;
-  stock?: number;
-  brand?: string;
-  category?: string;
-  thumbnail?: string;
-  images?: string[];
-  count?: number;
+export interface ICard {
+  id: string;
+  name: string;
+  breed: string;
+  description: string;
+  photo: string;
+}
+export interface CardsPropsType {
+  cats: ICard[];
 }

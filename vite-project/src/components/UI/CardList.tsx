@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { productItems } from '../../API/fakeJSON';
-import CardItem from './CardItem';
 
-class CardList extends Component {
+import CardItem from './CardItem';
+import { CardsPropsType } from '../../types/types';
+
+class CardList extends Component<CardsPropsType> {
   render() {
     return (
       <ul className="cards__list">
-        {productItems.products.map((product) => (
-          <CardItem key={product.id} {...product} />
+        {this.props.cats.map((card) => (
+          <CardItem key={card.id} {...card} />
         ))}
       </ul>
     );

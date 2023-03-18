@@ -1,3 +1,4 @@
+import { SEARCH_INPUT_PLACEHOLDER } from '../../../constants/constants';
 import React, { Component } from 'react';
 
 class SearchInput extends Component {
@@ -26,7 +27,7 @@ class SearchInput extends Component {
           onKeyDown={this.handleChange}
           type="text"
           className="search__input"
-          placeholder="Search"
+          placeholder={SEARCH_INPUT_PLACEHOLDER}
           value={this.state.searchInputValue}
           data-testid="search-input"
         />

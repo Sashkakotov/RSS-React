@@ -3,21 +3,22 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { describe, test, expect } from 'vitest';
 import CardItem from '../src/components/UI/CardItem';
-import productItems from '../src/API/fakeJSON';
+
 import CardList from '../src/components/UI/CardList';
 import SearchInput from '../src/components/UI/input/SearchInput';
 import App from '../src/App';
+import { cats } from '../src/data/data.json';
 
 describe('Cards tests', () => {
   test('render CardItem component', () => {
-    render(<CardItem {...productItems.products[0]} />);
+    render(<CardItem {...cats[0]} />);
     const cardContainer = screen.getByTestId('card-item__container');
     expect(cardContainer).toBeDefined();
   });
   test('render CardList component', () => {
-    const { container } = render(<CardList />);
+    const { container } = render(<CardList cats={cats} />);
     const cardsAmount = container.querySelectorAll('li');
-    expect(cardsAmount.length).toBe(productItems.products.length);
+    expect(cardsAmount.length).toBe(cats.length);
   });
 });
 

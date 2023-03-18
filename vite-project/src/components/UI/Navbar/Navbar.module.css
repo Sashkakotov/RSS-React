@@ -1,3 +1,4 @@
 .active {
+  transition: 0.5s;
   color: red;
 }

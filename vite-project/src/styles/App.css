@@ -21,6 +21,13 @@ a:hover {
   text-decoration: underline rgba(105, 150, 219, 0.25);
   transform: scale(1.1);
 }
+.main-title {
+  text-align: center;
+  color: rgb(152, 4, 4);
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 4rem;
+}
+
 .navbar {
   width: 100%;
   height: 50px;
@@ -43,8 +50,8 @@ a:hover {
 .card-item__container {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  box-shadow: 10px 10px 10px rgba(105, 150, 219, 0.25);
+  max-width: 400px;
+  box-shadow: 10px 10px 10px rgba(224, 12, 12, 0.25);
 }
 .card-item__header {
   padding: 10px;
@@ -54,8 +61,7 @@ a:hover {
   justify-content: center;
 }
 .card-photo__container {
-  width: 90%;
-  height: 182px;
+  height: 300px;
   display: flex;
   justify-content: center;
   margin: 0 auto;
@@ -65,17 +71,19 @@ a:hover {
   height: 100%;
 }
 .card-description {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+
   padding: 10px 10px 10px 30px;
-  column-gap: 10px;
-  row-gap: 5px;
+  flex-direction: column;
 }
 .card-description__item {
   padding-left: 5px;
   display: inline-block;
+  
 }
-
+.description-item__span{
+  font-weight: bold;
+}
 .search__input {
   display: block;
   width: 100%;
