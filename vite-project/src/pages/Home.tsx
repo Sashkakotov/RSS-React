@@ -18,7 +18,6 @@ class Home extends Component {
   }
 
   render() {
-    console.log(this.state.cats);
     return (
       <main className="main" data-testid="main">
         <h1 className="main-title">{APP_TITLE}</h1>
