@@ -5,7 +5,7 @@ const catsData = {
       name: 'Eva',
       breed: 'Devon Rex',
       description: 'This is my cat, she hates all people except me and my wife',
-      photo: '../../src/assets/eva.jpg',
+      photo: 'public/eva.jpg',
     },
     {
       id: '2',
@@ -13,7 +13,7 @@ const catsData = {
       breed: 'Sphinx',
       description:
         'Loki is the new most severe and gloomy cat in the world, who fell in love with the Internet.',
-      photo: '../../src/assets/loki.jpg',
+      photo: 'public/loki.jpg',
     },
 
     {
@@ -22,14 +22,14 @@ const catsData = {
       breed: 'Snowshoe',
       description:
         "Grumpy Cat, real name is Tardar Sauce. A cat who became an internet celebrity for her unusual appearance after her owner's brother posted a picture of the cat on Reddit in September 2012.",
-      photo: '../../src/assets/snow-shu.jpg',
+      photo: 'public/snow-shu.jpg',
     },
     {
       id: '4',
       name: 'Kouky',
       breed: 'Scottish Fold',
       description: 'Koyuki is a Japanese angry cat who looks like the true embodiment of evil.',
-      photo: '../../src/assets/kouky.jpg',
+      photo: 'public/kouky.jpg',
     },
 
     {
@@ -38,7 +38,7 @@ const catsData = {
       breed: 'Himalayan',
       description:
         'The Guinness Book of Records has officially recorded that Colonel Meow with a coat length of 23 cm is the longest-haired cat in the world.',
-      photo: '../../src/assets/polovnik-miu.jpg',
+      photo: 'public/polovnik-miu.jpg',
     },
     {
       id: '6',
@@ -46,14 +46,14 @@ const catsData = {
       breed: 'Persian cat',
       description:
         "If Grumpy Cat is an angry cat, then Persian cat Garfi is rather angry. Or he's obviously plotting to kill you.",
-      photo: '../../src/assets/Garfi.jpg',
+      photo: 'public/Garfi.jpg',
     },
     {
       id: '7',
       name: 'Albert',
       breed: 'Selkirk rex',
       description: 'Curly-haired evil: cat Albert, which is very similar to the evil lamb',
-      photo: '../../src/assets/Albert.jpg',
+      photo: 'public/Albert.jpg',
     },
   ],
 };
