@@ -3,18 +3,16 @@ import React, { Component } from 'react';
 import SearchInput from '../components/UI/input/SearchInput';
 import CardList from '../components/UI/CardList';
 import { APP_TITLE } from '../constants/constants';
-import { getCats } from '../API/getData';
+import getCats from '../API/getData';
 
 class Home extends Component {
   state = {
     cats: [],
   };
 
-  async componentDidMount() {
-    const result = await getCats();
-    if (result) {
-      this.setState({ cats: result.cats });
-    }
+  componentDidMount() {
+    const result = getCats();
+    this.setState({ cats: result });
   }
 
   render() {

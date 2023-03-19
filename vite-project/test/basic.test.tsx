@@ -7,18 +7,18 @@ import CardItem from '../src/components/UI/CardItem';
 import CardList from '../src/components/UI/CardList';
 import SearchInput from '../src/components/UI/input/SearchInput';
 import App from '../src/App';
-import { cats } from '../src/data/data.json';
+import catsData from '../src/API/data';
 
 describe('Cards tests', () => {
   test('render CardItem component', () => {
-    render(<CardItem {...cats[0]} />);
+    render(<CardItem {...catsData.cats[0]} />);
     const cardContainer = screen.getByTestId('card-item__container');
     expect(cardContainer).toBeDefined();
   });
   test('render CardList component', () => {
-    const { container } = render(<CardList cats={cats} />);
+    const { container } = render(<CardList cats={catsData.cats} />);
     const cardsAmount = container.querySelectorAll('li');
-    expect(cardsAmount.length).toBe(cats.length);
+    expect(cardsAmount.length).toBe(catsData.cats.length);
   });
 });
 

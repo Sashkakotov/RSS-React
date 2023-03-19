@@ -1,9 +1,11 @@
-export const getCats = async () => {
+import catsData from './data.js';
+
+const getCats = () => {
   try {
-    const response = await fetch('../../src/data/data.json');
-    const result = await response.json();
+    const result = catsData.cats;
     return result;
   } catch (e) {
     console.log(e);
   }
 };
+export default getCats;
