@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ABOUT_LINK, HOME_LINK } from '../../../constants/constants';
+import { ABOUT_LINK, FORMS__LINK, HOME_LINK } from '../../../constants/constants';
 import styles from './Navbar.module.css';
 class Navbar extends Component {
   render() {
@@ -13,6 +13,9 @@ class Navbar extends Component {
           </NavLink>
           <NavLink to="/about" className={({ isActive }) => (isActive ? styles.active : undefined)}>
             {ABOUT_LINK}
+          </NavLink>
+          <NavLink to="/forms" className={({ isActive }) => (isActive ? styles.active : undefined)}>
+            {FORMS__LINK}
           </NavLink>
         </div>
       </div>

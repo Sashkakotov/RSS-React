@@ -6,6 +6,7 @@ import About from './pages/About';
 import Home from './pages/Home';
 import Error from './pages/Error';
 import './styles/App.css';
+import Forms from './pages/Forms';
 class App extends Component {
   render() {
     return (
@@ -14,7 +15,7 @@ class App extends Component {
         <Routes>
           <Route path="/about" element={<About />} />
           <Route path="/" element={<Home />} />
-          <Route path="/error" element={<Error />} />
+          <Route path="/forms" element={<Forms />} />
           <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>

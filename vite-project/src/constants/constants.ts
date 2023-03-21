@@ -4,6 +4,7 @@ export const ABOUT_PAGE_TITLE = 'This app created by Sashkakotov';
 
 export const HOME_LINK = 'Home';
 export const ABOUT_LINK = 'About us';
+export const FORMS__LINK = 'Forms';
 
 export const SEARCH_INPUT_PLACEHOLDER = 'Search';
 
