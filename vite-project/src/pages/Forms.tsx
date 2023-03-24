@@ -1,66 +1,104 @@
+import CardItem from '../components/UI/CardItem';
 import React, { Component, RefObject, SyntheticEvent } from 'react';
+import { ICard } from 'types/types';
 import BREEDS__LIST from '../API/breeds';
+import catsData from '../API/data';
 
-type CardsArrayTypes = {
-  name: string;
-  image: string;
-  date: string;
-  breed: string;
-  description: string;
-  sex: string;
-  pedigree: string;
-};
 interface IFormConstructor {
   confirm: boolean;
-  cardsArray: CardsArrayTypes[];
+  cardsArray: ICard[];
+  nameValidation: boolean;
+  photoValidation: boolean;
+  breedValidation: boolean;
+  descriptionValidation: boolean;
 }
 class Forms extends Component<unknown, IFormConstructor> {
   name: RefObject<HTMLInputElement>;
-  image: RefObject<HTMLInputElement>;
+  photo: RefObject<HTMLInputElement>;
   date: RefObject<HTMLInputElement>;
   breed: RefObject<HTMLSelectElement>;
   description: RefObject<HTMLTextAreaElement>;
   sexMale: RefObject<HTMLInputElement>;
   sexFemale: RefObject<HTMLInputElement>;
   pedigree: RefObject<HTMLInputElement>;
+  submit: RefObject<HTMLInputElement>;
 
   constructor(props: IFormConstructor) {
     super(props);
     this.name = React.createRef();
-    this.image = React.createRef();
+    this.photo = React.createRef();
     this.date = React.createRef();
     this.breed = React.createRef();
     this.description = React.createRef();
     this.sexMale = React.createRef();
     this.sexFemale = React.createRef();
     this.pedigree = React.createRef();
+    this.submit = React.createRef();
     this.state = {
       confirm: false,
       cardsArray: [],
+      nameValidation: false,
+      photoValidation: false,
+      breedValidation: false,
+      descriptionValidation: false,
     };
   }
 
-  handleSubmit = (event: SyntheticEvent) => {
-    const inputsList = {
-      name: this.name.current?.value,
-      image: this.image.current?.value,
-      date: this.date.current?.value,
-      breed: this.breed.current?.value,
-      description: this.description.current?.value,
+  nameCheckValidation = () => {
+    if (this.name.current?.value[0] && this.name.current?.value[0].match(/[A-Z]/)) {
+      console.log(this.name.current?.value[0], 'sadsad');
+
+      this.setState({ nameValidation: true });
+    } else {
+      console.log(this.name.current?.value[0], 'sadsadfalse');
+      this.setState({ nameValidation: false });
+    }
+  };
+
+  photoCheckValidation = () => {
+    if (this.photo) {
+      this.setState({ photoValidation: true });
+    } else {
+      this.setState({ photoValidation: false });
+    }
+  };
+
+  checkValidation = (event: SyntheticEvent) => {
+    this.nameCheckValidation();
+    this.photoCheckValidation();
+    if (this.state.photoValidation && this.state.nameValidation) {
+      this.handleSubmit();
+    } else {
+      console.log('no validation');
+    }
+    event.preventDefault();
+  };
+  handleSubmit = () => {
+    const inputsList: ICard = {
+      id: String(catsData.cats.length + 1 + this.state.cardsArray.length),
+      name: String(this.name.current?.value),
+      photo: URL.createObjectURL(this.photo.current?.files![0] as Blob | MediaSource),
+      date: String(this.date.current?.value),
+      breed: String(this.breed.current?.value),
+      description: String(this.description.current?.value),
       sex: this.sexMale.current?.checked
-        ? this.sexMale.current?.value
-        : this.sexFemale.current?.value,
+        ? String(this.sexMale.current?.value)
+        : String(this.sexFemale.current?.value),
       pedigree: this.pedigree.current?.checked ? 'Yes' : 'No',
     };
 
-    console.log(inputsList);
+    this.state.cardsArray.push(inputsList) as unknown as ICard[];
+    this.setState({ cardsArray: this.state.cardsArray });
 
-    event.preventDefault();
+    console.log('inputsList', inputsList);
+    console.log('this.state.cardsArray', this.state.cardsArray);
+    console.log(this.state);
   };
+
   render() {
     return (
       <main className="main">
-        <form className="forms__form" onSubmit={this.handleSubmit}>
+        <form className="forms__form" onSubmit={this.checkValidation}>
           <h2 className="forms__title">Card constructor</h2>
           <div>
             <label htmlFor="form-name">Name: </label>
@@ -68,7 +106,7 @@ class Forms extends Component<unknown, IFormConstructor> {
           </div>
           <div>
             <label htmlFor="form-image">Photo: </label>
-            <input type="file" id="form-image" accept="image/*" ref={this.image} />
+            <input type="file" id="form-image" accept="image/*" ref={this.photo} />
           </div>
           <div>
             <label htmlFor="form-date">Date of Birth: </label>
@@ -99,6 +137,7 @@ class Forms extends Component<unknown, IFormConstructor> {
               name="sex"
               value="Female"
               ref={this.sexFemale}
+              defaultChecked
             />
             <label htmlFor="form-radio__female">Female</label>
           </div>
@@ -106,8 +145,13 @@ class Forms extends Component<unknown, IFormConstructor> {
             <label htmlFor="form-checkbox">Pedigree: </label>
             <input type="checkbox" id="form-checkbox" />
           </div>
-          <button type="submit">Create Card</button>
+          <input type="submit" value="Create Card" ref={this.submit} />
         </form>
+        <ul className="cards__list">
+          {this.state.cardsArray.map((card) => (
+            <CardItem key={card.id} {...card} />
+          ))}
+        </ul>
       </main>
     );
   }
