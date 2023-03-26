@@ -184,3 +184,12 @@ a:hover {
 .forms__title {
   text-align: center;
 }
+.forms-error__message {
+  color: red;
+}
+.showConfirmMessage{
+  display: block;
+}
+.hide {
+  display: none;
+}

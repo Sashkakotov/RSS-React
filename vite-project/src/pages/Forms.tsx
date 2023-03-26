@@ -24,6 +24,7 @@ class Forms extends Component<unknown, IFormConstructor> {
   sexFemale: RefObject<HTMLInputElement>;
   pedigree: RefObject<HTMLInputElement>;
   submit: RefObject<HTMLInputElement>;
+  form: RefObject<HTMLFormElement>;
 
   constructor(props: IFormConstructor) {
     super(props);
@@ -36,15 +37,16 @@ class Forms extends Component<unknown, IFormConstructor> {
     this.sexFemale = React.createRef();
     this.pedigree = React.createRef();
     this.submit = React.createRef();
+    this.form = React.createRef();
     this.state = {
       confirm: false,
       cardsArray: [],
-      nameValidation: false,
-      photoValidation: false,
-      dateValidation: false,
-      breedValidation: false,
-      descriptionValidation: false,
-      sexValidation: false,
+      nameValidation: true,
+      photoValidation: true,
+      dateValidation: true,
+      breedValidation: true,
+      descriptionValidation: true,
+      sexValidation: true,
     };
   }
 
@@ -92,13 +94,23 @@ class Forms extends Component<unknown, IFormConstructor> {
   sexCheckValidation = () => {
     if (this.sexFemale.current?.checked || this.sexMale.current?.checked) {
       this.setState((prev) => ({ ...prev, sexValidation: true }));
-      console.log('sexYEs');
     } else {
       this.setState((prev) => ({ ...prev, sexValidation: false }));
-      console.log('sexNo');
     }
   };
 
+  resetForms = () => {
+    this.form.current?.reset();
+  };
+
+  showMessage = () => {
+    this.setState({ confirm: true });
+    setTimeout(() => {
+      this.setState({ confirm: false });
+      this.handleSubmit();
+      this.resetForms();
+    }, 3000);
+  };
   checkValidation = (event: SyntheticEvent) => {
     this.textCheckValidation();
     this.photoCheckValidation();
@@ -115,9 +127,7 @@ class Forms extends Component<unknown, IFormConstructor> {
         this.state.descriptionValidation &&
         this.state.sexValidation
       ) {
-        this.handleSubmit();
-      } else {
-        console.log('no validation');
+        this.showMessage();
       }
     }, 0);
     event.preventDefault();
@@ -138,29 +148,38 @@ class Forms extends Component<unknown, IFormConstructor> {
 
     this.state.cardsArray.push(inputsList) as unknown as ICard[];
     this.setState({ cardsArray: this.state.cardsArray });
-
-    console.log('inputsList', inputsList);
-    console.log('this.state.cardsArray', this.state.cardsArray);
-    console.log(this.state);
   };
 
   render() {
     return (
       <main className="main">
-        <form className="forms__form" onSubmit={this.checkValidation}>
+        <div className={this.state.confirm ? 'showConfirmMessage' : 'hide'}>
+          Card has been created
+        </div>
+        <form className="forms__form" onSubmit={this.checkValidation} ref={this.form}>
           <h2 className="forms__title">Card constructor</h2>
           <div>
             <label htmlFor="form-name">Name: </label>
             <input type="text" id="form-name" ref={this.name} />
-            <div>Error</div>
+            {this.state.nameValidation || (
+              <div className="forms-error__message">Text must start with a capital letter</div>
+            )}
           </div>
           <div>
             <label htmlFor="form-image">Photo: </label>
             <input type="file" id="form-image" accept="image/*" ref={this.photo} />
+            {this.state.photoValidation || (
+              <div className="forms-error__message">Please select photo</div>
+            )}
           </div>
           <div>
             <label htmlFor="form-date">Date of Birth: </label>
             <input type="date" id="form-date" ref={this.date} />
+            {this.state.dateValidation || (
+              <div className="forms-error__message">
+                The date selected should be less than the current date
+              </div>
+            )}
           </div>
           <div>
             <label htmlFor="form-date">Breed: </label>
@@ -171,14 +190,21 @@ class Forms extends Component<unknown, IFormConstructor> {
                 </option>
               ))}
             </select>
-          </div>
-          <div>
-            <label htmlFor="form-description">Description: </label>
-            <textarea id="form-description" ref={this.description} />
+            {this.state.breedValidation || (
+              <div className="forms-error__message">Please select gender</div>
+            )}
           </div>
 
           <div>
-            <label htmlFor="form-radio">Sex: </label>
+            <label htmlFor="form-description">Description: </label>
+            <textarea id="form-description" ref={this.description} />
+            {this.state.descriptionValidation || (
+              <div className="forms-error__message">Text must start with a capital letter</div>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="form-radio">Gender: </label>
             <input type="radio" id="form-radio__male" name="sex" value="Male" ref={this.sexMale} />
             <label htmlFor="form-radio__male">Male</label>
             <input
@@ -189,7 +215,11 @@ class Forms extends Component<unknown, IFormConstructor> {
               ref={this.sexFemale}
             />
             <label htmlFor="form-radio__female">Female</label>
+            {this.state.sexValidation || (
+              <div className="forms-error__message">Please select gender</div>
+            )}
           </div>
+
           <div>
             <label htmlFor="form-checkbox">Pedigree: </label>
             <input type="checkbox" id="form-checkbox" />
