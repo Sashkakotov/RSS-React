@@ -1,13 +1,16 @@
+import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
 import { describe, test, expect } from 'vitest';
+import '@testing-library/jest-dom';
+
 import CardItem from '../src/components/UI/CardItem';
 
 import CardList from '../src/components/UI/CardList';
 import SearchInput from '../src/components/UI/input/SearchInput';
 import App from '../src/App';
 import catsData from '../src/API/data';
+import Forms from '../src/pages/Forms';
 
 describe('Cards tests', () => {
   test('render CardItem component', () => {
@@ -51,4 +54,28 @@ describe('router test', () => {
     await user.click(screen.getByText(/about/i));
     expect(screen.getByText(/This app created by Sashkakotov/i)).toBeDefined;
   });
+});
+
+describe('Forms tests', () => {
+  test('test name input', () => {
+    render(<Forms />);
+    const nameInput = screen.getByTestId('forms-name__input') as HTMLInputElement;
+    fireEvent.change(nameInput, { target: { value: '23' } });
+    expect(nameInput.value).toBe('23');
+  });
+  test('test', () => {
+    render(<Forms />);
+    const dateInput = screen.getByTestId('forms-date__input') as HTMLInputElement;
+    fireEvent.change(dateInput, { target: { value: '2023-03-25' } });
+    expect(dateInput.value).toBe('2023-03-25');
+  });
+  test('test message', () => {
+    render(<Forms />);
+    fireEvent.click(screen.getByTestId('forms-submit__input'));
+    expect(screen.getByText('Card has been created')).toBeInTheDocument();
+  });
+  // test('render form', () => {
+  //   render(<Forms />);
+  //   expect(screen.getByText('Name:')).toBeInTheDocument();
+  // });
 });

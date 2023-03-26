@@ -162,7 +162,7 @@ class Forms extends Component<unknown, IFormConstructor> {
           <h2 className="forms__title">Card constructor</h2>
           <div>
             <label htmlFor="form-name">Name: </label>
-            <input type="text" id="form-name" ref={this.name} />
+            <input type="text" id="form-name" ref={this.name} data-testid="forms-name__input" />
             {this.state.nameValidation || (
               <div className="forms-error__message">Text must start with a capital letter</div>
             )}
@@ -176,7 +176,7 @@ class Forms extends Component<unknown, IFormConstructor> {
           </div>
           <div>
             <label htmlFor="form-date">Date of Birth: </label>
-            <input type="date" id="form-date" ref={this.date} />
+            <input type="date" id="form-date" ref={this.date} data-testid="forms-date__input" />
             {this.state.dateValidation || (
               <div className="forms-error__message">
                 The date selected should be less than the current date
@@ -226,7 +226,12 @@ class Forms extends Component<unknown, IFormConstructor> {
             <label htmlFor="form-checkbox">Pedigree: </label>
             <input type="checkbox" id="form-checkbox" ref={this.pedigree} />
           </div>
-          <input type="submit" value="Create Card" ref={this.submit} />
+          <input
+            type="submit"
+            value="Create Card"
+            ref={this.submit}
+            data-testid="forms-submit__input"
+          />
         </form>
         <ul className="cards__list">
           {this.state.cardsArray.map((card) => (
