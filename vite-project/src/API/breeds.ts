@@ -1,4 +1,5 @@
 const BREEDS__LIST = [
+  'Select breed',
   'Abyssinian',
   'Aegean',
   'American Shorthair',

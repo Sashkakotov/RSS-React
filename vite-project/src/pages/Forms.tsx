@@ -1,6 +1,6 @@
 import CardItem from '../components/UI/CardItem';
 import React, { Component, RefObject, SyntheticEvent } from 'react';
-import { ICard } from 'types/types';
+import { ICard } from '../types/types';
 import BREEDS__LIST from '../API/breeds';
 import catsData from '../API/data';
 
@@ -9,8 +9,10 @@ interface IFormConstructor {
   cardsArray: ICard[];
   nameValidation: boolean;
   photoValidation: boolean;
+  dateValidation: boolean;
   breedValidation: boolean;
   descriptionValidation: boolean;
+  sexValidation: boolean;
 }
 class Forms extends Component<unknown, IFormConstructor> {
   name: RefObject<HTMLInputElement>;
@@ -39,38 +41,85 @@ class Forms extends Component<unknown, IFormConstructor> {
       cardsArray: [],
       nameValidation: false,
       photoValidation: false,
+      dateValidation: false,
       breedValidation: false,
       descriptionValidation: false,
+      sexValidation: false,
     };
   }
 
-  nameCheckValidation = () => {
+  textCheckValidation = () => {
     if (this.name.current?.value[0] && this.name.current?.value[0].match(/[A-Z]/)) {
-      console.log(this.name.current?.value[0], 'sadsad');
-
-      this.setState({ nameValidation: true });
+      this.setState((prev) => ({ ...prev, nameValidation: true }));
     } else {
-      console.log(this.name.current?.value[0], 'sadsadfalse');
-      this.setState({ nameValidation: false });
+      this.setState((prev) => ({ ...prev, nameValidation: false }));
     }
   };
 
   photoCheckValidation = () => {
-    if (this.photo) {
-      this.setState({ photoValidation: true });
+    if (this.photo.current?.files![0]) {
+      this.setState((prev) => ({ ...prev, photoValidation: true }));
     } else {
-      this.setState({ photoValidation: false });
+      this.setState((prev) => ({ ...prev, photoValidation: false }));
+    }
+  };
+
+  dateCheckValidation = () => {
+    const dateNow = Date.now();
+    if (dateNow && dateNow >= this.date.current!.valueAsNumber) {
+      this.setState((prev) => ({ ...prev, dateValidation: true }));
+    } else {
+      this.setState((prev) => ({ ...prev, dateValidation: false }));
+    }
+  };
+
+  breedCheckValidation = () => {
+    if (this.breed.current?.value !== 'Select breed') {
+      this.setState((prev) => ({ ...prev, breedValidation: true }));
+    } else {
+      this.setState((prev) => ({ ...prev, breedValidation: false }));
+    }
+  };
+
+  descriptionCheckValidation = () => {
+    if (this.description.current?.value[0] && this.description.current?.value[0].match(/[A-Z]/)) {
+      this.setState((prev) => ({ ...prev, descriptionValidation: true }));
+    } else {
+      this.setState((prev) => ({ ...prev, descriptionValidation: false }));
+    }
+  };
+
+  sexCheckValidation = () => {
+    if (this.sexFemale.current?.checked || this.sexMale.current?.checked) {
+      this.setState((prev) => ({ ...prev, sexValidation: true }));
+      console.log('sexYEs');
+    } else {
+      this.setState((prev) => ({ ...prev, sexValidation: false }));
+      console.log('sexNo');
     }
   };
 
   checkValidation = (event: SyntheticEvent) => {
-    this.nameCheckValidation();
+    this.textCheckValidation();
     this.photoCheckValidation();
-    if (this.state.photoValidation && this.state.nameValidation) {
-      this.handleSubmit();
-    } else {
-      console.log('no validation');
-    }
+    this.dateCheckValidation();
+    this.breedCheckValidation();
+    this.descriptionCheckValidation();
+    this.sexCheckValidation();
+    setTimeout(() => {
+      if (
+        this.state.photoValidation &&
+        this.state.nameValidation &&
+        this.state.dateValidation &&
+        this.state.breedValidation &&
+        this.state.descriptionValidation &&
+        this.state.sexValidation
+      ) {
+        this.handleSubmit();
+      } else {
+        console.log('no validation');
+      }
+    }, 0);
     event.preventDefault();
   };
   handleSubmit = () => {
@@ -103,6 +152,7 @@ class Forms extends Component<unknown, IFormConstructor> {
           <div>
             <label htmlFor="form-name">Name: </label>
             <input type="text" id="form-name" ref={this.name} />
+            <div>Error</div>
           </div>
           <div>
             <label htmlFor="form-image">Photo: </label>
@@ -137,7 +187,6 @@ class Forms extends Component<unknown, IFormConstructor> {
               name="sex"
               value="Female"
               ref={this.sexFemale}
-              defaultChecked
             />
             <label htmlFor="form-radio__female">Female</label>
           </div>
