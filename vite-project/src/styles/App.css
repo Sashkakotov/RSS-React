@@ -50,7 +50,7 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
+  gap: 20px;
 }
 .card-item__container {
   display: flex;
@@ -177,7 +177,7 @@ a:hover {
   width: fit-content;
   gap: 10px;
   padding: 20px;
-  margin-top: 40px;
+  margin: 40px 0 20px 0;
   background-color: rgba(251, 251, 251, 0.663);
   box-shadow: 10px 10px 10px rgba(224, 12, 12, 0.25);
 }
@@ -186,9 +186,31 @@ a:hover {
 }
 .forms-error__message {
   color: red;
+  font-weight: 100;
+  font-size: smaller;
 }
-.showConfirmMessage{
+.showConfirmMessage {
   display: block;
+}
+.pop-up {
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  transition: 0.3s;
+}
+.pop-up__message {
+  position: absolute;
+  left: 30%;
+  top: 30%;
+
+  color: rgb(152, 4, 4);
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 4rem;
+  transition: 0.3s;
 }
 .hide {
   display: none;

@@ -154,7 +154,9 @@ class Forms extends Component<unknown, IFormConstructor> {
     return (
       <main className="main">
         <div className={this.state.confirm ? 'showConfirmMessage' : 'hide'}>
-          Card has been created
+          <div className="pop-up">
+            <div className="pop-up__message">Card has been created</div>
+          </div>
         </div>
         <form className="forms__form" onSubmit={this.checkValidation} ref={this.form}>
           <h2 className="forms__title">Card constructor</h2>
@@ -191,7 +193,7 @@ class Forms extends Component<unknown, IFormConstructor> {
               ))}
             </select>
             {this.state.breedValidation || (
-              <div className="forms-error__message">Please select gender</div>
+              <div className="forms-error__message">Please select breed</div>
             )}
           </div>
 
@@ -222,7 +224,7 @@ class Forms extends Component<unknown, IFormConstructor> {
 
           <div>
             <label htmlFor="form-checkbox">Pedigree: </label>
-            <input type="checkbox" id="form-checkbox" />
+            <input type="checkbox" id="form-checkbox" ref={this.pedigree} />
           </div>
           <input type="submit" value="Create Card" ref={this.submit} />
         </form>

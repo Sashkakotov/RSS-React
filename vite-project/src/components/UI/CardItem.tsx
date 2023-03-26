@@ -22,6 +22,15 @@ class CardItem extends Component<ICard> {
               <span className="description-item__span">{DESCRIPTION}</span>:{' '}
               {this.props.description}
             </p>
+            <p className="card-description__item">
+              <span className="description-item__span">Date of Birth: </span>: {this.props.date}
+            </p>
+            <p className="card-description__item">
+              <span className="description-item__span">Gender: </span>: {this.props.sex}
+            </p>
+            <p className="card-description__item">
+              <span className="description-item__span">Pedigree: </span>: {this.props.pedigree}
+            </p>
           </div>
         </div>
       </li>
