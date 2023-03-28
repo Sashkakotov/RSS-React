@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import CardItem from './CardItem';
 import { CardsPropsType } from '../../types/types';
 
-class CardList extends Component<CardsPropsType> {
-  render() {
-    return (
-      <ul className="cards__list">
-        {this.props.cats.map((card) => (
-          <CardItem key={card.id} {...card} />
-        ))}
-      </ul>
-    );
-  }
-}
+const CardList = (cards: CardsPropsType) => {
+  return (
+    <ul className="cards__list">
+      {cards.cats.map((card) => (
+        <CardItem key={card.id} {...card} />
+      ))}
+    </ul>
+  );
+};
 export default CardList;

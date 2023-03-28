@@ -10,3 +10,6 @@ export const SEARCH_INPUT_PLACEHOLDER = 'Search';
 
 export const BREED = 'Breed';
 export const DESCRIPTION = 'Description';
+export const DATE_OF_BIRTH = 'Date of Birth';
+export const GENDER = 'Gender';
+export const PEDIGREE = 'Pedigree';
