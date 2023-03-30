@@ -11,6 +11,7 @@ import SearchInput from '../src/components/UI/SearchInput/SearchInput';
 import App from '../src/App';
 import catsData from '../src/API/data';
 import Forms from '../src/pages/Forms';
+import PopUp from '../src/components/UI/Pop-up/Pop-up';
 
 describe('Cards tests', () => {
   test('render CardItem component', () => {
@@ -70,12 +71,11 @@ describe('Forms tests', () => {
     expect(dateInput.value).toBe('2023-03-25');
   });
   test('test message', () => {
-    render(<Forms />);
-    fireEvent.click(screen.getByTestId('forms-submit__input'));
+    render(<PopUp />);
     expect(screen.getByText('Card has been created')).toBeInTheDocument();
   });
-  // test('render form', () => {
-  //   render(<Forms />);
-  //   expect(screen.getByText('Name:')).toBeInTheDocument();
-  // });
+  test('render form', () => {
+    render(<Forms />);
+    expect(screen.getByText('Name:')).toBeInTheDocument();
+  });
 });
