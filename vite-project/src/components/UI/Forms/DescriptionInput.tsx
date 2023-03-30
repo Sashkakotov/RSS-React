@@ -12,7 +12,7 @@ const DescriptionInput = (props: {
     <div>
       <label htmlFor="form-description">{DESCRIPTION}</label>
       <textarea id="form-description" {...props.reg} />
-      {{ ...props.err } && <div className="forms-error__message">{VALIDATION_TEXT}</div>}
+      {props.err && <div className="forms-error__message">{VALIDATION_TEXT}</div>}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const GendersInput = (props: {
       <label htmlFor="form-radio__male">{MALE}</label>
       <input type="radio" id="form-radio__female" value="Female" {...props.reg} />
       <label htmlFor="form-radio__female">{FEMALE}</label>
-      {{ ...props.err } && <div className="forms-error__message">{VALIDATION_GENDER}</div>}
+      {props.err && <div className="forms-error__message">{VALIDATION_GENDER}</div>}
     </div>
   );
 };

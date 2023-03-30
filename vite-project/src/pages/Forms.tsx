@@ -57,7 +57,15 @@ const Forms = () => {
           err={errors.name}
         />
         <Photoinput reg={{ ...register('photo', { required: true }) }} err={errors.photo} />
-        {/* <DateInput /> */}
+        <DateInput
+          reg={{
+            ...register('date', {
+              required: true,
+              validate: (date) => Date.now() >= Date.parse(date),
+            }),
+          }}
+          err={errors.date}
+        />
         <BreedSelect
           reg={{
             ...register('breed', {

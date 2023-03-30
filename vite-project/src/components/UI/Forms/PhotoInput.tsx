@@ -12,7 +12,7 @@ const Photoinput = (props: {
     <div>
       <label htmlFor="form-image">{PHOTO}</label>
       <input type="file" id="form-image" accept="image/*" {...props.reg} />
-      {{ ...props.err } && <div className="forms-error__message">{VALIDATION_PHOTO}</div>}
+      {props.err && <div className="forms-error__message">{VALIDATION_PHOTO}</div>}
     </div>
   );
 };

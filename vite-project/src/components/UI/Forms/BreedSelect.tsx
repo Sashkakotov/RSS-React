@@ -19,7 +19,7 @@ const BreedSelect = (props: {
           </option>
         ))}
       </select>
-      {{ ...props.err } && <div className="forms-error__message">{VALIDATION_BREED}</div>}
+      {props.err && <div className="forms-error__message">{VALIDATION_BREED}</div>}
     </div>
   );
 };
