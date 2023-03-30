@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import SearchInput from '../components/UI/input/SearchInput';
+import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
 import { APP_TITLE } from '../constants/constants';
 import getCats from '../API/getData';

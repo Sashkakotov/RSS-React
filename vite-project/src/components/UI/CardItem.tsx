@@ -15,19 +15,19 @@ const CardItem = (card: ICard) => {
         </div>
         <div className="card-description">
           <p className="card-description__item">
-            <span className="description-item__span">{BREED}</span>: {card.breed}
+            <span className="description-item__span">{BREED}</span> {card.breed}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{DESCRIPTION}</span>: {card.description}
+            <span className="description-item__span">{DESCRIPTION}</span> {card.description}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{DATE_OF_BIRTH}: </span>: {card.date}
+            <span className="description-item__span">{DATE_OF_BIRTH} </span> {card.date}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{GENDER}: </span>: {card.sex}
+            <span className="description-item__span">{GENDER} </span> {card.sex}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{PEDIGREE}: </span>: {card.pedigree}
+            <span className="description-item__span">{PEDIGREE} </span> {card.pedigree}
           </p>
         </div>
       </div>
