@@ -22,3 +22,15 @@ export interface IFormConstructor {
   descriptionValidation: boolean;
   sexValidation: boolean;
 }
+
+export interface flickrResponse {
+  farm: number;
+  id: string;
+  isfamily: number;
+  isfriend: number;
+  ispublic: number;
+  owner: string;
+  secret: string;
+  server: string;
+  title: string;
+}

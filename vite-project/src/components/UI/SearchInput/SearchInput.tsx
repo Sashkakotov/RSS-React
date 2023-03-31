@@ -1,33 +1,39 @@
 import { SEARCH_INPUT_PLACEHOLDER } from '../../../constants/constants';
-import React, { useEffect, useRef, useState } from 'react';
+import React, {
+  EventHandler,
+  KeyboardEvent,
+  KeyboardEventHandler,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 
-const SearchInput = () => {
-  const [searchInputValue, setSearchInputValue] = useState(
-    localStorage.getItem('searchValue') || ''
-  );
-  const searchInputRef = useRef<string>();
+const SearchInput = (props) => {
+  // const [searchInputValue, setSearchInputValue] = useState();
 
-  useEffect(() => {
-    searchInputRef.current = searchInputValue;
-  });
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', String(searchInputRef.current));
-    };
-  });
+  // const searchInputRef = useRef<string>();
 
-  const handleChange = (e: React.SyntheticEvent) =>
-    setSearchInputValue((e.target as HTMLInputElement).value);
+  // useEffect(() => {
+  //   searchInputRef.current = searchInputValue;
+  // });
+  // useEffect(() => {
+  //   return () => {
+  //     localStorage.setItem('searchValue', String(searchInputRef.current));
+  //   };
+  // });
+
+  //
 
   return (
     <div className="search-input__container">
       <input
-        onChange={handleChange}
-        onKeyDown={handleChange}
+        // onChange={handleChange}
+        onKeyDown={props.change}
         type="text"
         className="search__input"
         placeholder={SEARCH_INPUT_PLACEHOLDER}
-        value={searchInputValue}
+        // value={searchInputValue}
         data-testid="search-input"
       />
     </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import CardItem from './CardItem';
-import { CardsPropsType } from '../../types/types';
+import { CardsPropsType, flickrResponse } from '../../types/types';
 
-const CardList = (cards: CardsPropsType) => {
+const CardList = (props: { cards: flickrResponse[] }) => {
   return (
     <ul className="cards__list">
-      {cards.cats.map((card) => (
+      {props.cards.map((card) => (
         <CardItem key={card.id} {...card} />
       ))}
     </ul>

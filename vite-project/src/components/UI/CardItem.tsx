@@ -1,19 +1,23 @@
 import React from 'react';
 
 import { BREED, DATE_OF_BIRTH, DESCRIPTION, GENDER, PEDIGREE } from '../../constants/constants';
-import { ICard } from '../../types/types';
+import { flickrResponse, ICard } from '../../types/types';
 
-const CardItem = (card: ICard) => {
+const CardItem = (card: flickrResponse) => {
   return (
     <li className="card-item__container" data-testid="card-item__container">
       <div className="card-item__header">
-        <h2 className="card-item__title">{card.name}</h2>
+        <h2 className="card-item__title">{card.title}</h2>
       </div>
       <div className="card-item__content">
         <div className="card-photo__container">
-          <img className="card-photo" src={card.photo} alt="img" />
+          <img
+            className="card-photo"
+            src={`https://live.staticflickr.com/${card.server}/${card.id}_${card.secret}_b.jpg`}
+            alt="img"
+          />
         </div>
-        <div className="card-description">
+        {/* <div className="card-description">
           <p className="card-description__item">
             <span className="description-item__span">{BREED}</span> {card.breed}
           </p>
@@ -29,7 +33,7 @@ const CardItem = (card: ICard) => {
           <p className="card-description__item">
             <span className="description-item__span">{PEDIGREE} </span> {card.pedigree}
           </p>
-        </div>
+        </div> */}
       </div>
     </li>
   );
