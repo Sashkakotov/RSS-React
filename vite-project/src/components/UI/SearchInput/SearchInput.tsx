@@ -30,6 +30,7 @@ const SearchInput = (props) => {
     <div className="search-input__container">
       <input
         onChange={handleChanges}
+        onKeyUp={handleChanges}
         onKeyDown={props.change}
         type="text"
         className="search__input"

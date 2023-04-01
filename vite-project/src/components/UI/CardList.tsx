@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import CardItem from './CardItem';
 import { CardsPropsType, flickrResponse } from '../../types/types';

@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BREED, DATE_OF_BIRTH, DESCRIPTION, GENDER, PEDIGREE } from '../../constants/constants';
 import { flickrResponse, ICard } from '../../types/types';
+import PopUpCard from './PopUpCard/PopUpCard';
 
 const CardItem = (card: flickrResponse) => {
   return (
@@ -17,7 +18,7 @@ const CardItem = (card: flickrResponse) => {
             alt="img"
           />
         </div>
-        {/* <div className="card-description">
+        <div className="card-description">
           <p className="card-description__item">
             <span className="description-item__span">{BREED}</span> {card.breed}
           </p>
@@ -33,7 +34,7 @@ const CardItem = (card: flickrResponse) => {
           <p className="card-description__item">
             <span className="description-item__span">{PEDIGREE} </span> {card.pedigree}
           </p>
-        </div> */}
+        </div>
       </div>
     </li>
   );

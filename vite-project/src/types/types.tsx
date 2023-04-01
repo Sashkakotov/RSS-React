@@ -33,4 +33,11 @@ export interface flickrResponse {
   secret: string;
   server: string;
   title: string;
+  name?: string;
+  photo?: string;
+  date?: string;
+  breed?: string;
+  description?: string;
+  sex?: string;
+  pedigree?: string;
 }
