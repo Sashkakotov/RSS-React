@@ -9,7 +9,9 @@ import React, {
   useState,
 } from 'react';
 
-const SearchInput = (props) => {
+const SearchInput = (props: {
+  onChange: (e: KeyboardEvent<HTMLInputElement>) => Promise<void>;
+}) => {
   const [searchInputValue, setSearchInputValue] = useState(
     localStorage.getItem('searchValue') || ''
   );
@@ -31,7 +33,7 @@ const SearchInput = (props) => {
       <input
         onChange={handleChanges}
         onKeyUp={handleChanges}
-        onKeyDown={props.change}
+        onKeyDown={props.onChange}
         type="text"
         className="search__input"
         placeholder={SEARCH_INPUT_PLACEHOLDER}

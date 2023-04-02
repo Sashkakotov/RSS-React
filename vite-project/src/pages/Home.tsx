@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
@@ -35,18 +35,21 @@ const Home = () => {
       setLoader(false);
     }
   };
-  const handleChange = async (e: KeyboardEvent) => {
-    if (e.key === 'Enter') {
+  const handleChange = async (e: SyntheticEvent<HTMLInputElement, KeyboardEvent>) => {
+    console.log(e.nativeEvent);
+
+    if (e.nativeEvent.key === 'Enter') {
       const response = await getFlickrCards((e.target as HTMLInputElement).value);
       setCats(await response);
+      console.log('sadasdasd');
     }
   };
 
   return (
     <main className="main" data-testid="main">
-      <div>{loader ? Spinner() : ''}</div>
+      {loader && <Spinner />}
       <h1 className="main-title">{APP_TITLE}</h1>
-      <SearchInput change={handleChange} />
+      <SearchInput onChange={handleChange} />
       {cats.length ? <CardList cards={cats} /> : <div>Please use search</div>}
       {/* {cats ? (
         <img

@@ -44,6 +44,7 @@ const Forms = () => {
   return (
     <main className="main">
       {confirm && <PopUp />}
+
       <form className="forms__form" onSubmit={onSubmit}>
         <h2 className="forms__title">{CARD_CONSTRUCTOR}</h2>
         <NameInput
