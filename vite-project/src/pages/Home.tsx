@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import SearchInput from '../components/UI/input/SearchInput';
+import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
 import { APP_TITLE } from '../constants/constants';
 import getCats from '../API/getData';
+import { ICard } from 'types/types';
 
-class Home extends Component {
-  state = {
-    cats: [],
-  };
+const Home = () => {
+  const [cats, setCats] = useState([] as ICard[]);
 
-  componentDidMount() {
+  useEffect(() => {
     const result = getCats();
-    this.setState({ cats: result });
-  }
+    if (result) {
+      setCats(result);
+    }
+  }, []);
 
-  render() {
-    return (
-      <main className="main" data-testid="main">
-        <h1 className="main-title">{APP_TITLE}</h1>
-        <SearchInput />
-        <CardList cats={this.state.cats} />
-      </main>
-    );
-  }
-}
+  return (
+    <main className="main" data-testid="main">
+      <h1 className="main-title">{APP_TITLE}</h1>
+      <SearchInput />
+      <CardList cats={cats} />
+    </main>
+  );
+};
 export default Home;

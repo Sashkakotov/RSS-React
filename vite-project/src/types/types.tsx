@@ -1,13 +1,24 @@
 export interface ICard {
-  id: string;
-  name: string;
-  photo: string;
+  id?: string;
+  name?: string;
+  photo?: string;
   date?: string;
-  breed: string;
-  description: string;
+  breed?: string;
+  description?: string;
   sex?: string;
   pedigree?: string;
 }
 export interface CardsPropsType {
   cats: ICard[];
+}
+
+export interface IFormConstructor {
+  confirm: boolean;
+  cardsArray: ICard[];
+  nameValidation: boolean;
+  photoValidation: boolean;
+  dateValidation: boolean;
+  breedValidation: boolean;
+  descriptionValidation: boolean;
+  sexValidation: boolean;
 }
