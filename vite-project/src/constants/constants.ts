@@ -21,6 +21,10 @@ export const MALE = 'Male';
 export const FEMALE = 'Female';
 export const YES = 'Yes';
 export const NO = 'No';
+export const SPECIES = 'Species:';
+export const STATUS = 'Status:';
+export const CREATED = 'Created:';
+export const LOCATION = 'Location:';
 
 export const VALIDATION_TEXT = 'Text must start with a capital letter';
 export const VALIDATION_PHOTO = 'Please select photo';

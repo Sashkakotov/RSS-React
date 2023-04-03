@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { CREATED, GENDER, LOCATION, SPECIES, STATUS } from '../../constants/constants';
-import { ICardAPI } from '../../types/types';
+import { BREED, DATE_OF_BIRTH, DESCRIPTION, GENDER, PEDIGREE } from '../../constants/constants';
+import { ICard } from '../../types/types';
 
-const CardItem = (card: ICardAPI) => {
+const CardFromForm = (card: ICard) => {
   return (
     <li className="card-item__container" data-testid="card-item__container">
       <div className="card-item__header">
@@ -11,27 +11,27 @@ const CardItem = (card: ICardAPI) => {
       </div>
       <div className="card-item__content">
         <div className="card-photo__container">
-          <img className="card-photo" src={card.image} alt="img" />
+          <img className="card-photo" src={card.photo} alt="img" />
         </div>
         <div className="card-description">
           <p className="card-description__item">
-            <span className="description-item__span">{SPECIES}</span> {card.species}
+            <span className="description-item__span">{BREED}</span> {card.breed}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{STATUS}</span> {card.status}
+            <span className="description-item__span">{DESCRIPTION}</span> {card.description}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{CREATED}</span> {card.created}
+            <span className="description-item__span">{DATE_OF_BIRTH} </span> {card.date}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{GENDER} </span> {card.gender}
+            <span className="description-item__span">{GENDER} </span> {card.sex}
           </p>
           <p className="card-description__item">
-            <span className="description-item__span">{LOCATION}</span> {card.location.name}
+            <span className="description-item__span">{PEDIGREE} </span> {card.pedigree}
           </p>
         </div>
       </div>
     </li>
   );
 };
-export default CardItem;
+export default CardFromForm;

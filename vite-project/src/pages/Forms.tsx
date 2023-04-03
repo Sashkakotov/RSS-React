@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import CardItem from '../components/UI/CardItem';
 import { ICard } from '../types/types';
 import BREEDS__LIST from '../API/breeds';
 import catsData from '../API/data';
@@ -15,6 +14,7 @@ import GendersInput from '../components/UI/Forms/GenderInputs';
 import PedigreeInput from '../components/UI/Forms/PedigreeInput';
 import SubmitInput from '../components/UI/Forms/SubmitInput';
 import BreedSelect from '../components/UI/Forms/BreedSelect';
+import CardFromForm from '../components/UI/CardForm';
 
 const Forms = () => {
   const {
@@ -94,7 +94,7 @@ const Forms = () => {
 
       <ul className="cards__list">
         {stateForm.map((card) => (
-          <CardItem key={card.id} {...card} />
+          <CardFromForm key={card.id} {...card} />
         ))}
       </ul>
     </main>

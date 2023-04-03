@@ -1,13 +1,5 @@
 import { SEARCH_INPUT_PLACEHOLDER } from '../../../constants/constants';
-import React, {
-  EventHandler,
-  KeyboardEvent,
-  KeyboardEventHandler,
-  SyntheticEvent,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
 
 const SearchInput = (props: {
   onChange: (e: KeyboardEvent<HTMLInputElement>) => Promise<void>;

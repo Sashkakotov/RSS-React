@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import CardItem from './CardItem';
-import { CardsPropsType, flickrResponse } from '../../types/types';
+import { ICardAPI } from '../../types/types';
 
-const CardList = (props: { cards: flickrResponse[] }) => {
+const CardList = (props: { cards: ICardAPI[] }) => {
   return (
     <ul className="cards__list">
       {props.cards.map((card) => (

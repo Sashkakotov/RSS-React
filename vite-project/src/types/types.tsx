@@ -41,3 +41,15 @@ export interface flickrResponse {
   sex?: string;
   pedigree?: string;
 }
+export interface ICardAPI {
+  id: number;
+  name: string;
+  image: string | undefined;
+  species: string;
+  status: string;
+  created: string;
+  gender: string;
+  location: {
+    name: string;
+  };
+}

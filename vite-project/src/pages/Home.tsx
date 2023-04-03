@@ -3,12 +3,11 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
 import { APP_TITLE } from '../constants/constants';
-import getCats from '../API/getData';
-import { flickrResponse, ICard } from '../types/types';
+import { ICardAPI } from '../types/types';
 import Spinner from '../components/UI/Spinner/Spinner';
 
 const Home = () => {
-  const [cats, setCats] = useState([] as flickrResponse[]);
+  const [cats, setCats] = useState([] as ICardAPI[]);
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
@@ -25,10 +24,12 @@ const Home = () => {
   const getFlickrCards = async (search: string) => {
     setLoader(true);
     try {
-      const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=e1ef2eb52dead24effea7dc5ec0fd405&text=${search}&tags=cats&per_page=10&page=&format=json&nojsoncallback=1`;
+      const url = `https://rickandmortyapi.com/api/character/?name=${search}`;
       const response = await fetch(url);
       const result = await response.json();
-      return result.photos.photo;
+      console.log(result.results);
+
+      return result.results;
     } catch (err) {
       console.log(err);
     } finally {
@@ -36,12 +37,10 @@ const Home = () => {
     }
   };
   const handleChange = async (e: SyntheticEvent<HTMLInputElement, KeyboardEvent>) => {
-    console.log(e.nativeEvent);
-
     if (e.nativeEvent.key === 'Enter') {
-      const response = await getFlickrCards((e.target as HTMLInputElement).value);
+      if (!(e.target instanceof HTMLInputElement)) return;
+      const response = await getFlickrCards(e.target.value);
       setCats(await response);
-      console.log('sadasdasd');
     }
   };
 
@@ -50,16 +49,7 @@ const Home = () => {
       {loader && <Spinner />}
       <h1 className="main-title">{APP_TITLE}</h1>
       <SearchInput onChange={handleChange} />
-      {cats.length ? <CardList cards={cats} /> : <div>Please use search</div>}
-      {/* {cats ? (
-        <img
-          className="card-photo"
-          src={`https://live.staticflickr.com/${cats.server}/${cats.id}_${cats.secret}.jpg`}
-          alt="img"
-        />
-      ) : (
-        ''
-      )} */}
+      {cats ? <CardList cards={cats} /> : <div>Please use search</div>}
     </main>
   );
 };
