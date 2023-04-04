@@ -53,3 +53,4 @@ export interface ICardAPI {
     name: string;
   };
 }
+export type IModalProps = () => void;

@@ -1,4 +1,4 @@
-export const APP_TITLE = 'Friendly cat';
+export const APP_TITLE = 'Rick and Morty';
 export const ERROR_PAGE_TITLE = '404 No such error';
 export const ABOUT_PAGE_TITLE = 'This app created by Sashkakotov';
 
@@ -33,3 +33,5 @@ export const VALIDATION_BREED = 'Please select breed';
 export const VALIDATION_GENDER = 'Please select gender';
 
 export const TEXT_INPUT_PATTERN = /^[A-Z][a-zA-Z]+$/;
+
+export const NOTHING_FOUND = 'Nothing found';

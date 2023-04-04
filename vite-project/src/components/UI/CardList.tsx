@@ -7,7 +7,7 @@ const CardList = (props: { cards: ICardAPI[] }) => {
   return (
     <ul className="cards__list">
       {props.cards.map((card) => (
-        <CardItem key={card.id} {...card} />
+        <CardItem key={card.id} card={card} isModal={false} />
       ))}
     </ul>
   );

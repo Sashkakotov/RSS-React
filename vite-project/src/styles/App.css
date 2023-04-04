@@ -28,7 +28,8 @@ a:hover {
 }
 .main-title {
   text-align: center;
-  color: rgb(152, 4, 4);
+  color: #68f412;
+  text-shadow: #72ca06 4px 4px 3px;
   font-family: 'Shadows Into Light', cursive;
   font-size: 4rem;
 }
@@ -56,7 +57,10 @@ a:hover {
   display: flex;
   flex-direction: column;
   width: 400px;
-  box-shadow: 10px 10px 10px rgba(224, 12, 12, 0.25);
+  box-shadow: 10px 10px 10px  #72ca06b5;
+  background-color: white;
+  min-height: 400px;
+
 }
 .card-item__header {
   padding: 10px;
@@ -70,13 +74,20 @@ a:hover {
   display: flex;
   justify-content: center;
   margin: 0 auto;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
 .card-photo {
   max-width: 90%;
   height: 100%;
+  transition: 0.3s;
+}
+.card-photo:hover{
+  transform: scale(1.08);
 }
 .card-description {
-  display: flex;
+  display: none;
 
   padding: 10px 10px 10px 30px;
   flex-direction: column;
@@ -195,7 +206,7 @@ a:hover {
 .pop-up {
   width: 100%;
   min-height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.5);
   overflow: hidden;
   position: fixed;
   top: 0px;
@@ -206,7 +217,6 @@ a:hover {
   position: absolute;
   left: 30%;
   top: 30%;
-
   color: rgb(152, 4, 4);
   font-family: 'Shadows Into Light', cursive;
   font-size: 4rem;
@@ -228,7 +238,7 @@ a:hover {
 }
 
 .path {
-  stroke: rgb(152, 4, 4);
+  stroke: #68f412;
   stroke-linecap: round;
   animation: dash 1.5s ease-in-out infinite;
 }
@@ -252,4 +262,49 @@ a:hover {
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
+}
+.close__button {
+  top: 50px;
+  right: 50px;
+  position: fixed;
+}
+.close__button {
+  width: 40px;
+  height: 40px;
+  border-radius: 40px;
+  z-index: 1;
+  margin: 20px auto;
+  cursor: pointer;
+}
+.close__button:before {
+  content: '+';
+  color: #68f412;
+  position: absolute;
+  z-index: 2;
+  transform: rotate(45deg);
+  font-size: 50px;
+  line-height: 1;
+  top: -5px;
+  left: 6px;
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+}
+.close__button:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: #68f412;
+  z-index: 1;
+  transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+  transform: scale(0.01);
+}
+.close__button:hover:after {
+  transform: scale(1);
+}
+.close__button:hover:before {
+  transform: scale(0.8) rotate(45deg);
+  color: #fff;
 }

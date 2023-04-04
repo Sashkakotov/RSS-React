@@ -2,7 +2,7 @@ import React, { SyntheticEvent, useEffect, useState } from 'react';
 
 import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
-import { APP_TITLE } from '../constants/constants';
+import { APP_TITLE, NOTHING_FOUND } from '../constants/constants';
 import { ICardAPI } from '../types/types';
 import Spinner from '../components/UI/Spinner/Spinner';
 
@@ -16,6 +16,9 @@ const Home = () => {
       if (ls) {
         const response = await getFlickrCards(ls);
         setCats(await response);
+      } else {
+        const response = await getFlickrCards('');
+        setCats(await response);
       }
     };
     fetchingData();
@@ -26,9 +29,10 @@ const Home = () => {
     try {
       const url = `https://rickandmortyapi.com/api/character/?name=${search}`;
       const response = await fetch(url);
+      if (response.status !== 200) {
+        throw { ...(await response.json()) }.error;
+      }
       const result = await response.json();
-      console.log(result.results);
-
       return result.results;
     } catch (err) {
       console.log(err);
@@ -49,7 +53,7 @@ const Home = () => {
       {loader && <Spinner />}
       <h1 className="main-title">{APP_TITLE}</h1>
       <SearchInput onChange={handleChange} />
-      {cats ? <CardList cards={cats} /> : <div>Please use search</div>}
+      {cats ? <CardList cards={cats} /> : <div>{NOTHING_FOUND}</div>}
     </main>
   );
 };
