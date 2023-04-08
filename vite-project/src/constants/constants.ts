@@ -1,4 +1,4 @@
-export const APP_TITLE = 'Friendly cat';
+export const APP_TITLE = 'Rick and Morty';
 export const ERROR_PAGE_TITLE = '404 No such error';
 export const ABOUT_PAGE_TITLE = 'This app created by Sashkakotov';
 
@@ -21,6 +21,10 @@ export const MALE = 'Male';
 export const FEMALE = 'Female';
 export const YES = 'Yes';
 export const NO = 'No';
+export const SPECIES = 'Species:';
+export const STATUS = 'Status:';
+export const CREATED = 'Created:';
+export const LOCATION = 'Location:';
 
 export const VALIDATION_TEXT = 'Text must start with a capital letter';
 export const VALIDATION_PHOTO = 'Please select photo';
@@ -29,3 +33,5 @@ export const VALIDATION_BREED = 'Please select breed';
 export const VALIDATION_GENDER = 'Please select gender';
 
 export const TEXT_INPUT_PATTERN = /^[A-Z][a-zA-Z]+$/;
+
+export const NOTHING_FOUND = 'Nothing found';

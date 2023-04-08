@@ -1,13 +1,13 @@
 import React from 'react';
 
 import CardItem from './CardItem';
-import { CardsPropsType } from '../../types/types';
+import { ICardAPI } from '../../types/types';
 
-const CardList = (cards: CardsPropsType) => {
+const CardList = (props: { cards: ICardAPI[] }) => {
   return (
     <ul className="cards__list">
-      {cards.cats.map((card) => (
-        <CardItem key={card.id} {...card} />
+      {props.cards.map((card) => (
+        <CardItem key={card.id} card={card} isModal={false} />
       ))}
     </ul>
   );
