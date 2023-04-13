@@ -46,7 +46,7 @@ const Forms = () => {
       created: data.created,
       gender: data.male ? MALE : FEMALE,
       location: {
-        name: data.location.name,
+        name: data.locationName,
       },
     };
 

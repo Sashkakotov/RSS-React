@@ -6,12 +6,14 @@ interface CardsState {
   cards: ICardAPI[];
   isLoading: boolean;
   error: string;
+  searchInputValue: string;
 }
 
 const initialState: CardsState = {
   cards: [],
   isLoading: false,
   error: '',
+  searchInputValue: '',
 };
 
 export const cardSlice = createSlice({
@@ -29,6 +31,9 @@ export const cardSlice = createSlice({
     cardsFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    setSearchInputValue(state, action: PayloadAction<string>) {
+      state.searchInputValue = action.payload;
     },
   },
 });
