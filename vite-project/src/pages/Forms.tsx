@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useAppDispatch, useAppSelector } from '../hooks/redux';
+import { formSlice } from '../store/reducers/formSlice';
 
 import { ICardAPI } from '../types/types';
 import BREEDS__LIST from '../API/breeds';
@@ -30,14 +32,13 @@ const Forms = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const [stateForm, setStateForm] = useState([] as ICardAPI[]);
   const [confirm, setConfirm] = useState(false);
+  const dispatch = useAppDispatch();
+  const { formCards } = useAppSelector((state) => state.formReducer);
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data);
-
     const inputsList: ICardAPI = {
-      id: catsData.cats.length + 1 + stateForm.length,
+      id: catsData.cats.length + 1 + formCards.length,
       image: URL.createObjectURL(data.image[0] as Blob | MediaSource),
       status: data.status ? ALIVE : DEAD,
       name: data.name,
@@ -48,10 +49,12 @@ const Forms = () => {
         name: data.location.name,
       },
     };
+
     setConfirm(true);
+
     setTimeout(() => {
       setConfirm(false);
-      setStateForm([...stateForm, inputsList]);
+      dispatch(formSlice.actions.formState([...formCards, inputsList]));
       reset();
     }, 3000);
   });
@@ -59,9 +62,9 @@ const Forms = () => {
   return (
     <main className="main">
       {confirm && <PopUp />}
-
       <form className="forms__form" onSubmit={onSubmit}>
         <h2 className="forms__title">{CARD_CONSTRUCTOR}</h2>
+
         <NameInput
           reg={{
             ...register('name', {
@@ -72,7 +75,9 @@ const Forms = () => {
           }}
           err={errors.name}
         />
-        <Photoinput reg={{ ...register('image', { required: true }) }} err={errors.photo} />
+
+        <Photoinput reg={{ ...register('image', { required: true }) }} err={errors.image} />
+
         <DateInput
           reg={{
             ...register('created', {
@@ -80,8 +85,9 @@ const Forms = () => {
               validate: (date) => Date.now() >= Date.parse(date),
             }),
           }}
-          err={errors.date}
+          err={errors.created}
         />
+
         <SpeciesSelect
           reg={{
             ...register('species', {
@@ -89,26 +95,28 @@ const Forms = () => {
               validate: (breed) => breed !== BREEDS__LIST[0],
             }),
           }}
-          err={errors.breed}
+          err={errors.species}
         />
 
         <LocationInput
           reg={{
-            ...register('location.name', {
+            ...register('locationName', {
               required: true,
               minLength: 1,
               pattern: TEXT_INPUT_PATTERN,
             }),
           }}
-          err={errors.description}
+          err={errors.locationName}
         />
-        <GendersInput reg={{ ...register('gender', { required: true }) }} err={errors.sex} />
+        <GendersInput reg={{ ...register('gender', { required: true }) }} err={errors.gender} />
+
         <AliveInput reg={{ ...register('status') }} />
+
         <SubmitInput reg={{ ...register('submitInput') }} />
       </form>
 
       <ul className="cards__list">
-        {stateForm.map((card) => (
+        {formCards.map((card) => (
           <CardItem key={card.id} card={card} isModal={false} />
         ))}
       </ul>

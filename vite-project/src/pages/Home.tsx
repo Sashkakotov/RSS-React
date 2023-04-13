@@ -9,11 +9,11 @@ import fetchCards from '../store/reducers/ActionCreator';
 
 const Home = () => {
   const dispatch = useAppDispatch();
-  const { cards, isLoading, error } = useAppSelector((state) => state.userReducer);
+  const { cards, isLoading, error } = useAppSelector((state) => state.cardReducer);
 
   useEffect(() => {
-    dispatch(fetchCards(''));
-  }, [dispatch]);
+    cards.length || dispatch(fetchCards(''));
+  }, [cards.length, dispatch]);
 
   const handleChange = async (e: SyntheticEvent<HTMLInputElement, KeyboardEvent>) => {
     if (e.nativeEvent.key === 'Enter') {
