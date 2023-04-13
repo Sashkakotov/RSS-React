@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import { ICard } from '../types/types';
+import { ICardAPI } from '../types/types';
 import BREEDS__LIST from '../API/breeds';
 import catsData from '../API/data';
-import { CARD_CONSTRUCTOR, NO, TEXT_INPUT_PATTERN, YES } from '../constants/constants';
+import {
+  ALIVE,
+  CARD_CONSTRUCTOR,
+  DEAD,
+  TEXT_INPUT_PATTERN,
+  MALE,
+  FEMALE,
+} from '../constants/constants';
 import PopUp from '../components/UI/Pop-up/Pop-up';
 import NameInput from '../components/UI/Forms/NameInput';
 import Photoinput from '../components/UI/Forms/PhotoInput';
 import DateInput from '../components/UI/Forms/DateInput';
-import DescriptionInput from '../components/UI/Forms/DescriptionInput';
 import GendersInput from '../components/UI/Forms/GenderInputs';
-import PedigreeInput from '../components/UI/Forms/PedigreeInput';
 import SubmitInput from '../components/UI/Forms/SubmitInput';
-import BreedSelect from '../components/UI/Forms/BreedSelect';
-import CardFromForm from '../components/UI/CardForm';
+import SpeciesSelect from '../components/UI/Forms/BreedSelect';
+import LocationInput from '../components/UI/Forms/DescriptionInput';
+import AliveInput from '../components/UI/Forms/PedigreeInput';
+import CardItem from '../components/UI/CardItem';
 
 const Forms = () => {
   const {
@@ -23,15 +30,23 @@ const Forms = () => {
     formState: { errors },
     reset,
   } = useForm();
-  const [stateForm, setStateForm] = useState([] as ICard[]);
+  const [stateForm, setStateForm] = useState([] as ICardAPI[]);
   const [confirm, setConfirm] = useState(false);
 
   const onSubmit = handleSubmit((data) => {
-    const inputsList: ICard = {
-      ...data,
-      id: String(catsData.cats.length + 1 + stateForm.length),
-      photo: URL.createObjectURL(data.photo[0] as Blob | MediaSource),
-      pedigree: data.pedigree.checked ? YES : NO,
+    console.log(data);
+
+    const inputsList: ICardAPI = {
+      id: catsData.cats.length + 1 + stateForm.length,
+      image: URL.createObjectURL(data.image[0] as Blob | MediaSource),
+      status: data.status ? ALIVE : DEAD,
+      name: data.name,
+      species: data.species,
+      created: data.created,
+      gender: data.male ? MALE : FEMALE,
+      location: {
+        name: data.location.name,
+      },
     };
     setConfirm(true);
     setTimeout(() => {
@@ -57,19 +72,19 @@ const Forms = () => {
           }}
           err={errors.name}
         />
-        <Photoinput reg={{ ...register('photo', { required: true }) }} err={errors.photo} />
+        <Photoinput reg={{ ...register('image', { required: true }) }} err={errors.photo} />
         <DateInput
           reg={{
-            ...register('date', {
+            ...register('created', {
               required: true,
               validate: (date) => Date.now() >= Date.parse(date),
             }),
           }}
           err={errors.date}
         />
-        <BreedSelect
+        <SpeciesSelect
           reg={{
-            ...register('breed', {
+            ...register('species', {
               required: true,
               validate: (breed) => breed !== BREEDS__LIST[0],
             }),
@@ -77,9 +92,9 @@ const Forms = () => {
           err={errors.breed}
         />
 
-        <DescriptionInput
+        <LocationInput
           reg={{
-            ...register('description', {
+            ...register('location.name', {
               required: true,
               minLength: 1,
               pattern: TEXT_INPUT_PATTERN,
@@ -87,14 +102,14 @@ const Forms = () => {
           }}
           err={errors.description}
         />
-        <GendersInput reg={{ ...register('sex', { required: true }) }} err={errors.sex} />
-        <PedigreeInput reg={{ ...register('pedigree') }} />
+        <GendersInput reg={{ ...register('gender', { required: true }) }} err={errors.sex} />
+        <AliveInput reg={{ ...register('status') }} />
         <SubmitInput reg={{ ...register('submitInput') }} />
       </form>
 
       <ul className="cards__list">
         {stateForm.map((card) => (
-          <CardFromForm key={card.id} {...card} />
+          <CardItem key={card.id} card={card} isModal={false} />
         ))}
       </ul>
     </main>

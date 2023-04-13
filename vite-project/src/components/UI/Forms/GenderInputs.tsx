@@ -11,13 +11,7 @@ const GendersInput = (props: {
   return (
     <div>
       <label htmlFor="form-radio">{GENDER} </label>
-      <input
-        type="radio"
-        id="form-radio__male"
-        value="Male"
-        // {...register('sex', { required: true })}
-        {...props.reg}
-      />
+      <input type="radio" id="form-radio__male" value="Male" {...props.reg} />
       <label htmlFor="form-radio__male">{MALE}</label>
       <input type="radio" id="form-radio__female" value="Female" {...props.reg} />
       <label htmlFor="form-radio__female">{FEMALE}</label>
