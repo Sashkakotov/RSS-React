@@ -34,6 +34,7 @@ const CardItem = (props: { card: ICardAPI; isModal: boolean }) => {
         <div className="card-photo__container">
           <img
             className="card-photo"
+            data-testid="card-photo"
             src={props.card.image}
             alt="img"
             onClick={() => !props.isModal && setShowModal(true)}

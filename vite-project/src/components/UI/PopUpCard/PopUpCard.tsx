@@ -4,7 +4,7 @@ import CardItem from '../CardItem';
 
 const PopUpCard = (props: { card: ICardAPI; onClose: (e: SyntheticEvent) => void }) => {
   return (
-    <div style={{ position: 'absolute' }}>
+    <div style={{ position: 'absolute' }} data-testid="pop-up__container">
       <div className="pop-up" onClick={props.onClose}></div>
       <CardItem card={props.card} isModal={true} />
       <div className="close__button" onClick={props.onClose}></div>
