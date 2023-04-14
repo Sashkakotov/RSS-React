@@ -8,7 +8,6 @@ const SearchInput = (props: {
 }) => {
   const dispatch = useAppDispatch();
   const { searchInputValue } = useAppSelector((state) => state.cardReducer);
-  // const [searchInputValue, setSearchInputValue] = useState('');
 
   const searchInputRef = useRef<string>();
 
@@ -18,7 +17,6 @@ const SearchInput = (props: {
 
   const handleChanges = (e: React.SyntheticEvent) =>
     dispatch(cardSlice.actions.setSearchInputValue((e.target as HTMLInputElement).value));
-  // setSearchInputValue((e.target as HTMLInputElement).value);
 
   return (
     <div className="search-input__container">

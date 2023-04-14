@@ -54,3 +54,7 @@ export interface ICardAPI {
   };
 }
 export type IModalProps = () => void;
+
+export interface CardsState {
+  searchInputValue: string;
+}

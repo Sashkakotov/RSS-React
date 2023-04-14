@@ -1,33 +1,35 @@
-import React, { SyntheticEvent, useEffect } from 'react';
+import React, { SyntheticEvent, useState } from 'react';
 
 import SearchInput from '../components/UI/SearchInput/SearchInput';
 import CardList from '../components/UI/CardList';
 import { APP_TITLE, NOTHING_FOUND } from '../constants/constants';
 import Spinner from '../components/UI/Spinner/Spinner';
-import { useAppDispatch, useAppSelector } from '../hooks/redux';
-import fetchCards from '../store/reducers/ActionCreator';
+import { useAppSelector } from '../hooks/redux';
+import { cardsAPI } from '../services/cardsServices';
 
 const Home = () => {
-  const dispatch = useAppDispatch();
-  const { cards, isLoading, error } = useAppSelector((state) => state.cardReducer);
+  const { searchInputValue } = useAppSelector((state) => state.cardReducer);
+  const [searchValue, setSearchValue] = useState(searchInputValue);
 
-  useEffect(() => {
-    cards.length || dispatch(fetchCards(''));
-  }, [cards.length, dispatch]);
+  const { data: cards, error, isLoading } = cardsAPI.useFetchAllCardsQuery(searchValue);
 
   const handleChange = async (e: SyntheticEvent<HTMLInputElement, KeyboardEvent>) => {
     if (e.nativeEvent.key === 'Enter') {
       if (!(e.target instanceof HTMLInputElement)) return;
-      dispatch(fetchCards(e.target.value));
+      setSearchValue(e.target.value);
     }
   };
 
   return (
     <main className="main" data-testid="main">
-      {isLoading && <Spinner />}
       <h1 className="main-title">{APP_TITLE}</h1>
       <SearchInput onChange={handleChange} />
-      {error ? <>{NOTHING_FOUND}</> : <CardList cards={cards} />}
+      {isLoading && <Spinner />}
+      {error === undefined && cards !== undefined ? (
+        <CardList cards={cards.results} />
+      ) : (
+        <>{NOTHING_FOUND}</>
+      )}
     </main>
   );
 };
