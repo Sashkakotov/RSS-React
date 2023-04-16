@@ -1,25 +1,23 @@
 import { SEARCH_INPUT_PLACEHOLDER } from '../../../constants/constants';
-import React, { KeyboardEvent, useEffect, useRef, useState } from 'react';
+import React, { KeyboardEvent, useEffect, useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { cardSlice } from '../../../store/reducers/cardSlice';
 
 const SearchInput = (props: {
   onChange: (e: KeyboardEvent<HTMLInputElement>) => Promise<void>;
 }) => {
-  const [searchInputValue, setSearchInputValue] = useState(
-    localStorage.getItem('searchValue') || ''
-  );
+  const dispatch = useAppDispatch();
+  const { searchInputValue } = useAppSelector((state) => state.cardReducer);
 
   const searchInputRef = useRef<string>();
 
   useEffect(() => {
     searchInputRef.current = searchInputValue;
   });
-  useEffect(() => {
-    return () => {
-      localStorage.setItem('searchValue', String(searchInputRef.current));
-    };
-  });
+
   const handleChanges = (e: React.SyntheticEvent) =>
-    setSearchInputValue((e.target as HTMLInputElement).value);
+    dispatch(cardSlice.actions.setSearchInputValue((e.target as HTMLInputElement).value));
+
   return (
     <div className="search-input__container">
       <input

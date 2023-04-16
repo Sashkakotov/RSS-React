@@ -1,9 +1,9 @@
 import BREEDS__LIST from '../../../API/breeds';
 import React from 'react';
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
-import { BREED, VALIDATION_BREED } from '../../../constants/constants';
+import { SPECIES, VALIDATION_BREED } from '../../../constants/constants';
 
-const BreedSelect = (props: {
+const SpeciesSelect = (props: {
   reg: JSX.IntrinsicAttributes &
     React.ClassAttributes<HTMLSelectElement> &
     React.SelectHTMLAttributes<HTMLSelectElement>;
@@ -11,7 +11,7 @@ const BreedSelect = (props: {
 }) => {
   return (
     <div>
-      <label htmlFor="form-date">{BREED} </label>
+      <label htmlFor="form-date">{SPECIES} </label>
       <select {...props.reg}>
         {BREEDS__LIST.map((breed) => (
           <option key={breed} value={breed}>
@@ -23,4 +23,4 @@ const BreedSelect = (props: {
     </div>
   );
 };
-export default BreedSelect;
+export default SpeciesSelect;
