@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Navbar from './components/UI/Navbar/Navbar';
 import About from './pages/About';
@@ -10,7 +10,7 @@ import Forms from './pages/Forms';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
         <Route path="/about" element={<About />} />
@@ -18,7 +18,7 @@ const App = () => {
         <Route path="/forms" element={<Forms />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
 

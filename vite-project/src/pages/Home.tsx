@@ -14,7 +14,6 @@ const Home = () => {
   const {
     data: { results: cards = [] } = {},
     isError,
-
     isLoading,
   } = useFetchAllCardsQuery(searchValue);
 
