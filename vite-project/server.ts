@@ -33,7 +33,8 @@ async function createServer() {
         },
       });
     } catch (e) {
-      vite.ssrFixStacktrace(e);
+      const err = e as Error;
+      vite.ssrFixStacktrace(err);
       next(e);
     }
   });
