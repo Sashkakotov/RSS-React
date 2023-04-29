@@ -13,53 +13,20 @@ import Forms from '../src/pages/Forms';
 import PopUp from '../src/components/UI/Pop-up/Pop-up';
 import CardFromForm from '../src/components/UI/CardForm';
 import catsData from '../src/API/data';
-import ReactDOM from 'react-dom';
+
 import { Provider } from 'react-redux';
 import { AppStore, RootState, setupStore } from '../src/store/store';
-import { PreloadedState, configureStore, AnyAction } from '@reduxjs/toolkit';
-import { cardsAPI } from '../src/services/cardsServices';
-import { FormState } from 'react-hook-form';
-import { CardsState } from '../src/types/types';
+import { PreloadedState } from '@reduxjs/toolkit';
 import Error from '../src/pages/Error';
-import Home from '../src/pages/Home';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>;
   store?: AppStore;
 }
 
-// export function renderWithProviders(
-//   component: React.ReactElement,
-//   {
-//     preloadedState = {},
-//     // Automatically create a store instance if no store was passed in
-//     store = configureStore({
-//       reducer: {
-//         cardReducer,
-//         [cardsAPI.reducerPath]: cardsAPI.reducer,
-//         formReducer,
-//       },
-//       middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(cardsAPI.middleware),
-//       preloadedState,
-//     }),
-//     ...renderOptions
-//   }: ExtendedRenderOptions = {}
-// ) {
-//   function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
-//     return <Provider store={store}>{children}</Provider>;
-//   }
-
-// Return an object with the store and all of RTL's query functions
-//   return { store, ...render(component, { wrapper: Wrapper, ...renderOptions }) };
-// }
 export function renderWithProviders(
   ui: React.ReactElement,
-  {
-    preloadedState = {},
-    // Automatically create a store instance if no store was passed in
-    store = setupStore(),
-    ...renderOptions
-  }: ExtendedRenderOptions = {}
+  { store = setupStore(), ...renderOptions }: ExtendedRenderOptions = {}
 ) {
   function Wrapper({ children }: PropsWithChildren<unknown>): JSX.Element {
     return <Provider store={store}>{children}</Provider>;
